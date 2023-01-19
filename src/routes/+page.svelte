@@ -20,20 +20,25 @@
     <tbody>
       <tr>
         <td>Browser Refresh</td>
-        <td>Uses the default browser <code>beforeunload</code> event. Which is good</td>
+        <td>✅ Uses the default browser <code>beforeunload</code> event</td>
       </tr>
       <tr>
         <td>Browser Back / Forward into external link</td>
-        <td>Uses the default browser <code>beforeunload</code> event. Which is good</td>
+        <td>✅ Uses the default browser <code>beforeunload</code> event</td>
       </tr>
       <tr>
         <td><a href="https://svelte.dev/" rel="noreferrer">External link in THIS tab</a></td>
-        <td>I'd expect this to also trigger the default browser <code>beforeunload</code> event. In practice it's identical to browser back / forward.</td>
+        <td>
+          <p>❌ Should trigger the default browser <code>beforeunload</code> event (alert / dialog)</p>
+          <p>The <a href="https://kit.svelte.dev/docs/modules#$app-navigation-beforenavigate" target="_blank">beforeNavigate documentation</a> states that:</p>
+          <p><em>"calling cancel will trigger the native browser unload confirmation dialog. In these cases, navigation.willUnload is true."</em></p>
+          <p>Here we are given <code>navigation.willUnload: true</code>, but the behaviour doesn't reflect the docs</p>
+        </td>
       </tr>
       <tr>
         <td><a href="https://svelte.dev/" rel="noreferrer" target="_blank">External link in NEW tab</a></td>
-        <td>Since the link should open in a new tab, it shouldn't trigger navigation all. As it stands we're told that <code>willUnload: true</code> which isn't right.</td>
-      </tr>
+        <td>✅ The link opens in a new tab, it doesn't trigger navigation</td>
+      </tr> 
     </tbody>
   </table>
   <p>Conclusion:</p>
