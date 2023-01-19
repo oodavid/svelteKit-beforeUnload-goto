@@ -41,23 +41,6 @@
       </tr> 
     </tbody>
   </table>
-  <p>Conclusion:</p>
-  <ul>
-    <li>Links that open in a new tab should not trigger <code>beforeNavigate</code></li>
-    <li>
-      It would be useful to be notified whether <code>navigation.cancel()</code> will trigger the browser <code>beforeunload</code> behaviour.
-      <br/>
-      That way we could handle it better:
-      <pre>{
-`const causedDefaultUnloadEvent = navigation.cancel();
-if(!causedDefaultUnloadEvent){
-  showNativeUI = true;
-}
-`}
-      </pre>
-    </li>
-  </ul>
-    
 </div>
 
 <style>
